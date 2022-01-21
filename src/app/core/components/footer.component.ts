@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'lbk-footer',
   template: `
-    <footer class="relative">
+    <footer class="relative mt-20 lg:mt-0">
       <p class="text-center text-xs lg:fixed lg:bottom-0 lg:w-full">
         Challenge by
         <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
