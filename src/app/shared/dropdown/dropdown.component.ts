@@ -2,7 +2,9 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ContentChild
+  ContentChild,
+  EventEmitter,
+  Output
 } from '@angular/core';
 import {
   fadeInDownOnEnterAnimation,
@@ -42,6 +44,8 @@ export class DropDownComponent {
 
   contentId = `dropdown-${++DropDownComponent.nextId}`;
 
+  @Output() expandedChange = new EventEmitter<boolean>();
+
   hoverToggle = false;
   hoverContent = false;
 
@@ -51,6 +55,7 @@ export class DropDownComponent {
 
   maskForCheck() {
     this._cd.markForCheck();
+    this.expandedChange.emit(this.expanded);
   }
 
   get expanded(): boolean {

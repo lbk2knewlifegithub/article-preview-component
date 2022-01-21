@@ -2,13 +2,13 @@
   class="relative rounded-lg shadow-xl overflow-hidden lg:flex lg:overflow-visible"
 >
   <img
-    class="w-full lg:w-[300px] lg:bg-left"
+    class="w-full lg:w-[320px] lg:bg-left lg:rounded-l-lg"
     [src]="article.image"
     alt="Drawer"
   />
 
-  <div class="p-8 lg:pl-10 lg:pr-16">
-    <h3 class="text-xl lg:text-2xl">
+  <div class="p-8 bg-white lg:pl-10 lg:pr-16 lg:rounded-r-lg">
+    <h3 class="text-xl">
       {{ article.title }}
     </h3>
 
@@ -20,8 +20,14 @@
       <lbk-author [author]="article.author"></lbk-author>
 
       <!-- share button desktop -->
-      <lbk-dropdown class="hidden lg:block">
-        <lbk-share-button dropDownToggle></lbk-share-button>
+      <lbk-dropdown
+        (expandedChange)="expandedChange($event)"
+        class="hidden lg:block"
+      >
+        <lbk-share-button
+          [white]="openShareDesktop"
+          dropDownToggle
+        ></lbk-share-button>
 
         <ng-template dropDownContent>
           <lbk-share-dropdown
@@ -33,14 +39,14 @@
 
       <lbk-share-button
         class="lg:hidden"
-        (mouseover)="open()"
+        (mouseover)="openShareMobile = true"
       ></lbk-share-button>
     </div>
 
     <lbk-share-panel
-      *ngIf="openShare"
-      (mouseleave)="closed()"
-      (closed)="closed()"
+      *ngIf="openShareMobile"
+      (mouseleave)="closeShareMobile()"
+      (closed)="closeShareMobile()"
       @fadeInUpOnEnter
       @fadeOutDownOnLeave
       class="absolute bottom-0 left-0 w-full lg:hidden"

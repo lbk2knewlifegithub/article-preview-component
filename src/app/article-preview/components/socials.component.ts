@@ -22,5 +22,13 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       </li>
     </ul>
   `,
+  styles: [
+    `
+      a {
+        @apply duration-500;
+        @apply hover:text-fill-800;
+      }
+    `,
+  ],
 })
 export class SocialsComponent {}

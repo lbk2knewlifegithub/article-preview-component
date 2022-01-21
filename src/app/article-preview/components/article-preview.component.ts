@@ -1,27 +1,27 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { fadeInUpOnEnterAnimation, fadeOutDownOnLeaveAnimation } from 'angular-animations';
+import {
+  fadeInUpOnEnterAnimation,
+  fadeOutDownOnLeaveAnimation
+} from 'angular-animations';
 import { Article } from 'src/app/models';
 
 @Component({
   selector: 'lbk-article-preview',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './article-preview.component.html',
-  animations: [
-    fadeInUpOnEnterAnimation(),
-    fadeOutDownOnLeaveAnimation()
-  ]
+  animations: [fadeInUpOnEnterAnimation(), fadeOutDownOnLeaveAnimation()],
 })
 export class ArticlePreviewComponent {
   @Input() article!: Article;
 
-  openShare = false;
+  openShareDesktop = false;
+  openShareMobile = false;
 
-  open(){
-    this.openShare = true;
+  closeShareMobile() {
+    this.openShareMobile = false;
   }
 
-  closed() {
-    this.openShare = false;
+  expandedChange(expanded: boolean) {
+    this.openShareDesktop = expanded;
   }
-
 }
