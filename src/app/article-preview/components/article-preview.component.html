@@ -1,0 +1,49 @@
+<section
+  class="relative rounded-lg shadow-xl overflow-hidden lg:flex lg:overflow-visible"
+>
+  <img
+    class="w-full lg:w-[300px] lg:bg-left"
+    [src]="article.image"
+    alt="Drawer"
+  />
+
+  <div class="p-8 lg:pl-10 lg:pr-16">
+    <h3 class="text-xl lg:text-2xl">
+      {{ article.title }}
+    </h3>
+
+    <p class="text-sm mt-4 text-fill-800">
+      {{ article.content }}
+    </p>
+
+    <div class="mt-8 flex justify-between items-center">
+      <lbk-author [author]="article.author"></lbk-author>
+
+      <!-- share button desktop -->
+      <lbk-dropdown class="hidden lg:block">
+        <lbk-share-button dropDownToggle></lbk-share-button>
+
+        <ng-template dropDownContent>
+          <lbk-share-dropdown
+            class="-translate-x-[calc(50%-18px)]"
+          ></lbk-share-dropdown>
+        </ng-template>
+      </lbk-dropdown>
+      <!-- end share button desktop -->
+
+      <lbk-share-button
+        class="lg:hidden"
+        (mouseover)="open()"
+      ></lbk-share-button>
+    </div>
+
+    <lbk-share-panel
+      *ngIf="openShare"
+      (mouseleave)="closed()"
+      (closed)="closed()"
+      @fadeInUpOnEnter
+      @fadeOutDownOnLeave
+      class="absolute bottom-0 left-0 w-full lg:hidden"
+    ></lbk-share-panel>
+  </div>
+</section>
